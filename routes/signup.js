@@ -26,7 +26,7 @@ router.post("/signup",
     .isAlphanumeric()
     .withMessage("Last name has non-alpahanumeric characters."),
 
-  body("email")
+  body("username")
     .trim()
     .isLength({ min: 1 })
     .escape()
@@ -49,7 +49,7 @@ router.post("/signup",
         title: "Sign up",
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        email: req.body.email,
+        username: req.body.username,
         password: req.body.password,
         errors: errors.array(),
       })
@@ -60,7 +60,7 @@ router.post("/signup",
         const user = new User({
           first_name: req.body.first_name,
           last_name: req.body.last_name,
-          username: req.body.email,
+          username: req.body.username,
           password: hashedPassword
         })
 
