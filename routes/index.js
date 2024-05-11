@@ -6,7 +6,7 @@ const Message = require("../models/message.js");
 router.get("/", async (req, res, next) => {
   try {
     const messages = await Message.find()
-      .sort({ date_of_post: -1 })
+      .sort({ date_of_post: 1 })
       .populate("author")
       .exec();
 

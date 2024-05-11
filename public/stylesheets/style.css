@@ -7,3 +7,8 @@ a {
   display: block;
   color: #00B7FF;
 }
+
+.post {
+  display: block;
+  background-color: gray;
+}
