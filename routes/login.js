@@ -6,7 +6,17 @@ const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 
 router.get("/login", (req, res, next) => {
-  res.render("login", { title: "Login" });
+  if (req.user) {
+    return res.redirect("/");
+  }
+
+  let lastError;
+
+  if (req.session.messages) {
+    lastError = req.session.messages[req.session.messages.length - 1];
+  }
+
+  res.render("login", { title: "Login", loginError: lastError });
 })
 
 router.post("/login",
@@ -40,7 +50,8 @@ router.post("/login",
 
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login"
+    failureMessage: true,
+    failureRedirect: "/login",
   }),
 )
 

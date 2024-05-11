@@ -5,11 +5,15 @@ block content
 
   form(method="POST")
     div.form_group
-        label(for="email") Email:
-        input#email(type="email", placeholder="email" name="username" required value=(username===undefined ? "" : username))
-        label(for="password") password:
-        input#password(type="password", placeholder="Password" name="password" required value=(password===undefined ? "" : password))
-        button.btn.btn-primary(type='submit') Submit
+      label(for="email") Email:
+      input#email(type="email", placeholder="email" name="username" required value=(username===undefined ? "" : username))
+      label(for="password") password:
+      input#password(type="password", placeholder="Password" name="password" required value=(password===undefined ? "" : password))
+      button.btn.btn-primary(type='submit') Submit
+
+  if loginError
+    ul
+        li!= loginError
 
   if errors
     ul

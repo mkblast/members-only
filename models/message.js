@@ -13,8 +13,8 @@ const MessageScheme = new Schema({
   }
 })
 
-Message.virtual("date_of_post_formated").get(function() {
-  return DateTime.fromJSDate(this.date_of_post).toLocal(DateTime.DATE_MED);
+MessageScheme.virtual("date_of_post_formated").get(function() {
+  return DateTime.fromJSDate(this.date_of_post).toLocaleString(DateTime.DATE_MED);
 })
 
 module.exports = mongoose.model("Message", MessageScheme)

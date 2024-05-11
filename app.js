@@ -86,11 +86,13 @@ const indexRouter = require("./routes/index");
 const signupRouter = require("./routes/signup");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
+const postRouter = require("./routes/post");
 
 app.use(signupRouter);
 app.use(loginRouter);
 app.use(logoutRouter);
 app.use(indexRouter);
+app.use(postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

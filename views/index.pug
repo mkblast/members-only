@@ -5,5 +5,15 @@ block content
   p Welcome to #{title}
   if user
     a(href="/logout") Logout
+    a(href="/post") Post
+    for message in messages
+      p Title: #{message.title}
+      p Message: #{message.body}
+      p By: #{message.author.name}
+      p= message.date_of_post_formated
   else
     a(href="/login") Login
+    for message in messages
+      p Title: #{message.title}
+      p Message: #{message.body}
+      p= message.date_of_post_formated
