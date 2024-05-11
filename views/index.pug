@@ -13,6 +13,7 @@ block content
       p= message.date_of_post_formated
   else
     a(href="/login") Login
+    a(href="/signup") Sign up
     for message in messages
       p Title: #{message.title}
       p Message: #{message.body}
