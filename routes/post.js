@@ -16,13 +16,11 @@ router.post("/post",
   body("title")
     .trim()
     .isLength({ min: 1 })
-    .escape()
     .withMessage("Title must be provided"),
 
   body("message")
     .trim()
     .isLength({ min: 1 })
-    .escape()
     .withMessage("Message must be provided"),
 
   async (req, res, next) => {
