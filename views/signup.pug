@@ -19,3 +19,6 @@ block content
     ul
       for error in errors
         li!= error.msg
+  if signup_error
+    ul
+      li!=signup_error

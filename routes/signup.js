@@ -40,39 +40,46 @@ router.post("/signup",
     .escape()
     .withMessage("Password must not be empty"),
 
-  (req, res, next) => {
-    const errors = validationResult(req);
+  async (req, res, next) => {
+    try {
+      const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      res.render("signup", {
-        title: "Sign up",
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        username: req.body.username,
-        password: req.body.password,
-        errors: errors.array(),
-      })
-    }
+      const user = await User.findOne({ username: req.body.username });
 
-    bcryptjs.hash(req.body.password, 10, async (err, hashedPassword) => {
-      try {
-        const user = new User({
+      if (!errors.isEmpty() || user) {
+        res.render("signup", {
+          title: "Sign up",
           first_name: req.body.first_name,
           last_name: req.body.last_name,
           username: req.body.username,
-          password: hashedPassword
+          password: req.body.password,
+          errors: errors.array(),
+          signup_error: "The user already exists",
         })
-
-        if (err) {
-          next(err);
-        }
-
-        const result = await user.save();
-        res.redirect("/");
-      } catch (e) {
-        return next(e)
       }
-    })
+
+      bcryptjs.hash(req.body.password, 10, async (err, hashedPassword) => {
+        try {
+          const user = new User({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            username: req.body.username,
+            password: hashedPassword
+          })
+
+          if (err) {
+            next(err);
+          }
+
+          const result = await user.save();
+          res.redirect("/");
+        } catch (e) {
+          return next(e);
+        }
+      })
+    } catch (e) {
+      next(e);
+    }
   }
 )
 
