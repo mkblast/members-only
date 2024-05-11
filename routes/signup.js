@@ -43,7 +43,6 @@ router.post("/signup",
   (req, res, next) => {
     const errors = validationResult(req);
 
-
     if (!errors.isEmpty()) {
       res.render("signup", {
         title: "Sign up",

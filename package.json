@@ -7,6 +7,9 @@
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=local-library:* npm start"
   },
+  "engines": {
+    "node": ">=16.17.1"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^5.1.0",
