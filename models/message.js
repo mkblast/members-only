@@ -9,7 +9,7 @@ const MessageScheme = new Schema({
   body: { type: String, required: true },
   date_of_post: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   }
 })
 
